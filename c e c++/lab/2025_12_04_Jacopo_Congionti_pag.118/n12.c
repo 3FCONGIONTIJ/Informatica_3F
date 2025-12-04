@@ -1,13 +1,12 @@
 #include <stdio.h>
-void diffEtà(){//funzione per calcolare la differenza di età
-    int età1, età2, diff;
-    printf("Inserisci le età dei due fratelli (legge solo i primi 2 numeri inseriti): ");//chiede le età
-    scanf("%d %d", &età1, &età2);//legge le età
-    diff = età1 - età2;
-    if(diff < 0){
-        diff = -diff;//prende il valore assoluto della differenza
-    }
-    printf("La differenza di età è di %d anni.\n", diff);
+void diffEtà(){//funzione per calcolare la differenza di età di 3 fratelli
+    int età1, età2, età3;
+    printf("Inserisci l'età dei tre fratelli (legge solo i primi 3 numeri inseriti in ordine decrescente): ");//chiede le età
+    scanf("%d %d %d", &età1, &età2, &età3);//legge le età
+    int diff1 = età2 - età1;
+    int diff2 = età3 - età2;
+    printf("La differenza di età tra il primo e il secondo fratello è di %d anni.\n", diff1);
+    printf("La differenza di età tra il secondo e il terzo fratello è di %d anni.\n", diff2);
 }
 int main() {//programma principale
     diffEtà();
