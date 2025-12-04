@@ -5,8 +5,8 @@ void diffEtà(){//funzione per calcolare la differenza di età di 3 fratelli
     scanf("%d %d %d", &età1, &età2, &età3);//legge le età
     int diff1 = età2 - età1;
     int diff2 = età3 - età2;
-    printf("La differenza di età tra il primo e il secondo fratello è di %d anni.\n", diff1);
-    printf("La differenza di età tra il secondo e il terzo fratello è di %d anni.\n", diff2);
+    printf("La differenza di età tra il terzo e il secondo fratello è di %d anni.\n", diff1);
+    printf("La differenza di età tra il secondo e il primo fratello è di %d anni.\n", diff2);
 }
 int main() {//programma principale
     diffEtà();
