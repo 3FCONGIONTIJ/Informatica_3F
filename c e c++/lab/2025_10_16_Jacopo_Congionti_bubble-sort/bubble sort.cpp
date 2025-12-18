@@ -23,8 +23,9 @@ int main(){
 			cout<<",";
 		}
 	}
-	cout<<"numero maggiore\n";
-	cout<<arr[10];
-	cout<<"numero minore\n";
-	cout<<arr[0];
+	cout<<endl;
+	cout<<"numero maggiore:";
+	cout<<arr[10]<<endl;
+	cout<<"numero minore:";
+	cout<<arr[0]<<endl;
 }
