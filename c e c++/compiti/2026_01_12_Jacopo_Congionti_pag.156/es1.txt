@@ -1,0 +1,1 @@
+La variabile d'appoggio deve essere inizializzata con il primo valore della sequenza stessa.

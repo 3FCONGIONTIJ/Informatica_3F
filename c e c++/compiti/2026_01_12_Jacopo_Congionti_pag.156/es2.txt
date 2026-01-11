@@ -1,0 +1,3 @@
+I 2 errori nel codice sono:
+1. L'assegazione di num=max, che è sbagliata, bisogna invertirla quindi viene max=num
+2. L'algoritmo conta 5 numeri non 4 
