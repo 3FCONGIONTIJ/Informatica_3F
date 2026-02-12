@@ -1,34 +1,41 @@
 #include <iostream>
 using namespace std;
-int main() {
 
-    int numeri[10];
-    int j=0;
-    int scambio=0;
+void bubbleSort(int arr[], int n) {
+    int scambio;
+    bool scambiato = true;
+    int fine = n - 1;
 
-    cout<<"Inserisci 10 numeri interi:"<<endl;
-    for(int i=0;i<10;i++){
-        cin>>numeri[i];
-    }
-
-    for(int i=0;i<10;i++){
-        for(j=0;j<9-i;j++){
-            if(numeri[j]>numeri[j+1]){
-                scambio=numeri[j];
-                numeri[j]=numeri[j+1];
-                numeri[j+1]=scambio;
+    while (scambiato) {
+        scambiato = false;
+        for (int a = 0; a < fine; a++) {
+            if (arr[a] > arr[a + 1]) {
+                scambio = arr[a];
+                arr[a] = arr[a + 1];
+                arr[a + 1] = scambio;
+                scambiato = true;
             }
         }
+        fine--;
     }
-    cout<<"===================="<<endl;
-cout<<"Numeri ordinati in ordine crescente:"<<endl;
-    for(int i=0;i<10;i++){
-        cout<<numeri[i]<<endl;
+}
+int main() {
+    int n;
+    cout<<"Inserisci lunghezza array: ";
+    cin>>n;
+    int arr[n]; 
+    cout<<"Inserire i numeri dell'array:\n";
+    for (int i=0;i<n;i++) {
+        cout <<"Elemento "<< i + 1 << ": ";
+        cin >> arr[i];
     }
-cout<<"===================="<<endl;
-cout<<"Il numero più grande è:" <<numeri[9] <<endl;
-cout<<"===================="<<endl;
-cout<<"Il numero più piccolo è:" <<numeri[0] <<endl;
-
- return 0;   
+    bubbleSort(arr, n);
+    cout<<"\nRisultati\n";
+    cout<<"Numeri ordinati: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << (i < n - 1 ? ", " : "");
+    }
+    cout<<"\nNumero minore: "<< arr[0];
+    cout<<"\nNumero maggiore: "<< arr[n - 1] << endl;
+    return 0;
 }
