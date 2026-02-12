@@ -21,21 +21,21 @@ void bubbleSort(int arr[], int n) {
 }
 int main() {
     int n;
-    cout << "Inserisci lunghezza array: ";
-    cin >> n;
+    cout<<"Inserisci lunghezza array: ";
+    cin>>n;
     int arr[n]; 
-    cout << "Inserire i numeri dell'array:\n";
-    for (int i = 0; i < n; i++) {
-        cout << "Elemento " << i + 1 << ": ";
+    cout<<"Inserire i numeri dell'array:\n";
+    for (int i=0;i<n;i++) {
+        cout <<"Elemento "<< i + 1 << ": ";
         cin >> arr[i];
     }
     bubbleSort(arr, n);
-    cout << "\n--- RISULTATI ---\n";
-    cout << "Numeri ordinati: ";
+    cout<<"\nRisultati\n";
+    cout<<"Numeri ordinati: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << (i < n - 1 ? ", " : "");
     }
-    cout << "\nNumero minore: " << arr[0];
-    cout << "\nNumero maggiore: " << arr[n - 1] << endl;
+    cout<<"\nNumero minore: "<< arr[0];
+    cout<<"\nNumero maggiore: "<< arr[n - 1] << endl;
     return 0;
 }
