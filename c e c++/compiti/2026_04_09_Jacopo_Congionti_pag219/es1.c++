@@ -42,7 +42,7 @@ int main() {
     }
 
     string cerca_tel;
-    cout << "\nInserisci un numero di telefono da cercare: ";
+    cout << "\nInserisci un numero di età da cercare: ";
     cin >> cerca_tel;
 
     for (int i = 0; i < qta; i++) {
