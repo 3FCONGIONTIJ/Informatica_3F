@@ -1,4 +1,7 @@
 #include "agenda.h"
+#include <iostream>
+#include <string>
+
 using namespace std;
 
 int main() {
@@ -9,17 +12,21 @@ int main() {
     do {
         cout << "\n1. Aggiungi Contatto\n2. Cerca Contatto (Ricerca Binaria)\n3. Mostra Tutti\n0. Esci\nScelta: ";
         cin >> scelta;
-        cin.ignore(); // Pulisce il buffer
 
         if (scelta == 1) {
             Contatto c;
-            cout << "Nome: "; getline(std::cin, c.nome);
-            cout << "Telefono: "; getline(std::cin, c.telefono);
+            cout << "Nome: "; 
+            cin >> c.nome; 
+            cout << "Telefono: "; 
+            cin >> c.telefono; 
+            
             inserimentoOrdinato(agenda, numContatti, c);
         } 
         else if (scelta == 2) {
             string nome;
-            cout << "Inserisci nome da cercare: "; getline(std::cin, nome);
+            cout << "Inserisci nome da cercare: "; 
+            cin >> nome;
+            
             int pos = ricercaBinaria(agenda, numContatti, nome);
             if (pos != -1)
                 cout << "Trovato! Telefono: " << agenda[pos].telefono << "\n";
