@@ -1,19 +1,17 @@
-# Variabili
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
 
-# Target principale (l'eseguibile)
-agenda.exe: main.o funzioni.o
-	$(CXX) -o agenda.exe main.o funzioni.o
+agenda.exe: main.o gestore_contatti.o contatto.o
+	$(CXX) -o agenda.exe main.o gestore_contatti.o contatto.o
 
-# Regola per main.o
-main.o: main.cpp agenda.h
+main.o: main.cpp gestore_contatti.h
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
-# Regola per funzioni.o
-funzioni.o: funzioni.cpp agenda.h
-	$(CXX) $(CXXFLAGS) -c funzioni.cpp
+gestore_contatti.o: gestore_contatti.cpp gestore_contatti.h contatto.h
+	$(CXX) $(CXXFLAGS) -c gestore_contatti.cpp
 
-# Regola per pulire i file
+contatto.o: contatto.cpp contatto.h
+	$(CXX) $(CXXFLAGS) -c contatto.cpp
+
 clean:
 	rm -f *.o agenda.exe
