@@ -1,12 +1,10 @@
 #include "gestore_contatti.h"
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 int main() {
-    // Creazione del gestore (chiama automaticamente il costruttore)
-    GestoreContatti miaAgenda;
+    GestoreContatti miaAgenda; //creazione oggetto normale
     int scelta;
 
     do {
@@ -14,22 +12,25 @@ int main() {
         cin >> scelta;
 
         if (scelta == 1) {
-            string n, t;
-            cout << "Nome: "; cin >> n;
-            cout << "Telefono: "; cin >> t;
+            char nomeInput[50];
+            char telInput[20];
             
-            Contatto c(n, t);
-            miaAgenda.inserimentoOrdinato(c); // Chiamata al metodo dell'oggetto
+            cout << "Nome: "; 
+            cin >> nomeInput; 
+            cout << "Telefono: "; 
+            cin >> telInput; 
+            
+            Contatto c(nomeInput, telInput);
+            miaAgenda.inserimentoOrdinato(c);
         } 
         else if (scelta == 2) {
-            string nome;
-            cout << "Inserisci nome da cercare: "; cin >> nome;
+            char nome[50];
+            cout << "Inserisci nome da cercare: "; 
+            cin >> nome;
             
             int pos = miaAgenda.ricercaBinaria(nome);
-            // Nota: per accedere al telefono dobbiamo comunque usare i metodi di Contatto
-            // ma l'indice lo ricaviamo dal gestore.
             if (pos != -1)
-                cout << "Trovato!\n"; 
+                cout << "Trovato! (Indice interno: " << pos << ")\n";
             else
                 cout << "Contatto non trovato.\n";
         }

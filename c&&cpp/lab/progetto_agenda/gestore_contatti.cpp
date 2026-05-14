@@ -1,51 +1,45 @@
 #include "gestore_contatti.h"
+#include <iostream>
+#include <cstring> // Necessario per strcmp
 
 using namespace std;
 
-// Inizializzazione dell'agenda
 GestoreContatti::GestoreContatti() {
     numContatti = 0;
 }
 
-// Inserimento mantenendo l'ordine
 void GestoreContatti::inserimentoOrdinato(Contatto nuovo) {
     if (numContatti >= MAX_CONTATTI) {
         cout << "Errore: Agenda piena!\n";
         return;
     }
 
-    int i = numContatti - 1;
-    while (i >= 0 && agenda[i].getNome() > nuovo.getNome()) {
-        agenda[i + 1] = agenda[i];
-        i--;
-    }
-    
-    agenda[i + 1] = nuovo;
-    numContatti++;
+   for (int i = numContatti - 1; i >= 0 && strcmp(agenda[i].getNome(), nuovo.getNome()) > 0; i--) {
+    agenda[i + 1] = agenda[i];
+}   agenda[i + 1] = nuovo;
+    numContatti++; 
 }
+int GestoreContatti::ricercaBinaria(const char* nomeCercato) {
+    int sx = 0;
+    int dx = numContatti - 1;
 
-// Ricerca binaria all'interno dell'oggetto
-int GestoreContatti::ricercaBinaria(string nomeCercato) {
-    int sinistra = 0;
-    int destra = numContatti - 1;
+    while (sx <= dx) {
+        int medio = sx + (dx - sx) / 2;
+        int comparazione = strcmp(agenda[medio].getNome(), nomeCercato);
 
-    while (sinistra <= destra) {
-        int medio = sinistra + (destra - sinistra) / 2;
+        if (comparazione == 0)
+            return medio; // Trovato
 
-        if (agenda[medio].getNome() == nomeCercato)
-            return medio;
-
-        if (agenda[medio].getNome() < nomeCercato)
-            sinistra = medio + 1;
+        if (comparazione < 0)
+            sx = medio + 1; // nomeCercato viene "dopo"
         else
-            destra = medio - 1;
+            dx = medio - 1; // nomeCercato viene "prima"
     }
     return -1;
 }
 
-// Visualizzazione dell'elenco
 void GestoreContatti::visualizzaAgenda() {
-    cout << "\n--- Elenco Contatti (GestoreContatti) ---\n";
+    cout << "\n--- Elenco Contatti (Gestore) ---\n";
     for (int i = 0; i < numContatti; i++) {
         cout << i << ". " << agenda[i].getNome() << " - " << agenda[i].getTelefono() << "\n";
     }

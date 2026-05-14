@@ -1,22 +1,23 @@
 #ifndef CONTATTO_H
 #define CONTATTO_H
 
-#include <string>
-
-using namespace std;
-
 class Contatto {
 private:
-    string nome;
-    string telefono;
+    char nome[50];
+    char telefono[20];
 
 public:
+    // Costruttori
     Contatto();
-    Contatto(string n, string t);
-    string getNome() const;
-    string getTelefono() const;
-    void setNome(string n);
-    void setTelefono(string t);
+    Contatto(const char* n, const char* t);
+
+    // Getters (ritornano puntatori costanti a char)
+    const char* getNome() const;
+    const char* getTelefono() const;
+
+    // Setters
+    void setNome(const char* n);
+    void setTelefono(const char* t);
 };
 
 #endif
