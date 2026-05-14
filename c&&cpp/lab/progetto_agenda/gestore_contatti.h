@@ -5,34 +5,38 @@
 
 #define MAX_CONTATTI 100
 
+// Classe Base Astratta (Interfaccia)
 class GestoreContatti {
-private:
-    /*iniziallizazzione delle due variabile per gestire i contatti
-    Contatto agenda crea un vettore di contatti
-    int numContatti è il numero di contatti
-    */
+public:
+    virtual ~GestoreContatti() {} // Necessario per distruzione corretta delle derivate
+    virtual void inserimentoOrdinato(Contatto nuovo) = 0;
+    virtual int ricercaBinaria(const char* nomeCercato) = 0;
+    virtual void visualizzaAgenda() = 0;
+};
+
+// Classe 1: Solo RAM (quella dello step precedente)
+class GestoreRAMOrdinata : public GestoreContatti {
+protected: // protected così la derivata può accedere ai dati
     Contatto agenda[MAX_CONTATTI];
     int numContatti;
 
 public:
-    GestoreContatti();//creazione dell'oggetto tramite il costruttore
-    //creazione metodi che servono per compilare e il compilatore non deve incollare il codice nel compilatore sempre
-    virtual void inserimentoOrdinato(Contatto nuovo);
-    virtual int ricercaBinaria(const char* nomeCercato);
-    virtual void visualizzaAgenda();
-};
-class GestoreContattiRamOrdinata:public GestoreContatti {
-    private:
-    Contatto agenda[MAX_CONTATTI];
-    int numContatti;
-
-    public:
+    GestoreRAMOrdinata();
     void inserimentoOrdinato(Contatto nuovo) override;
     int ricercaBinaria(const char* nomeCercato) override;
     void visualizzaAgenda() override;
-}
-class Getsore MirorredRam {
-    
-}
+};
+
+// Classe 2: RAM con Mirroring su File
+class GestoreMirroredRAM : public GestoreRAMOrdinata {
+private:
+    const char* nomeFile = "agenda.txt";
+    void salvaSuFile(); // Metodo privato di utilità
+    void caricaDaFile();
+
+public:
+    GestoreMirroredRAM();  // Qui avviene il caricamento
+    ~GestoreMirroredRAM(); // Qui avviene il mirroring (salvataggio)
+};
 
 #endif

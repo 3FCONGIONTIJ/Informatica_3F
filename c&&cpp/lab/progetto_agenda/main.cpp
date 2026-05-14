@@ -4,41 +4,33 @@
 using namespace std;
 
 int main() {
-    GestoreContatti miaAgenda; //creazione oggetto normale
+    // Usiamo GestoreMirroredRAM invece di GestoreRAMOrdinata
+    GestoreContatti* miaAgenda = new GestoreMirroredRAM(); 
+    
     int scelta;
-
     do {
-        cout << "\n1. Aggiungi Contatto\n2. Cerca Contatto\n3. Mostra Tutti\n0. Esci\nScelta: ";
+        cout << "\n1. Aggiungi\n2. Cerca\n3. Mostra\n0. Esci\nScelta: ";
         cin >> scelta;
 
         if (scelta == 1) {
-            char nomeInput[50];
-            char telInput[20];
-            
-            cout << "Nome: "; 
-            cin >> nomeInput; 
-            cout << "Telefono: "; 
-            cin >> telInput; 
-            
-            Contatto c(nomeInput, telInput);
-            miaAgenda.inserimentoOrdinato(c);
+            char n[50], t[20];
+            cout << "Nome: "; cin >> n;
+            cout << "Tel: "; cin >> t;
+            miaAgenda->inserimentoOrdinato(Contatto(n, t));
         } 
         else if (scelta == 2) {
-            char nome[50];
-            cout << "Inserisci nome da cercare: "; 
-            cin >> nome;
-            
-            int pos = miaAgenda.ricercaBinaria(nome);
-            if (pos != -1)
-                cout << "Trovato! (Indice interno: " << pos << ")\n";
-            else
-                cout << "Contatto non trovato.\n";
+            char n[50];
+            cout << "Cerca nome: "; cin >> n;
+            int pos = miaAgenda->ricercaBinaria(n);
+            if (pos != -1) cout << "Trovato!\n";
+            else cout << "Non trovato.\n";
         }
         else if (scelta == 3) {
-            miaAgenda.visualizzaAgenda();
+            miaAgenda->visualizzaAgenda();
         }
 
     } while (scelta != 0);
 
+    delete miaAgenda; // QUI scatta il distruttore e salva il file!
     return 0;
 }
